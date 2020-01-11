@@ -8,6 +8,9 @@ melb_data = pd.read_csv(melb_file_path)
 
 print("Loading Melbourne Data ..")
 
+# print columns
+print(melb_data.columns)
+
 # print summary of the data
 print(melb_data.describe())
 

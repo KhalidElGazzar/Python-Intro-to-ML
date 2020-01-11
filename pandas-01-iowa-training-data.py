@@ -8,6 +8,9 @@ iowa_data = pd.read_csv(iowa_file_path)
 
 print("Loading Training Data ..")
 
+# print columns
+print(iowa_data.columns)
+
 # print summary of the data
 print(iowa_data.describe())
 
