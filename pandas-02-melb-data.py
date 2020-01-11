@@ -22,3 +22,28 @@ print(melb_data.columns)
 print(melb_data.describe())
 
 print("Data loaded ..")
+
+print("Selecting Data for modeling")
+
+print ("Set the prediction target y (Price)")
+# select the prediction target:
+# usually called y by convention
+# it is a single column stored in Series. A Series is a strcuture like DataFrame but with 
+# single column of data
+y = melb_data.Price
+
+print("Set the Features X: 'Rooms', 'Bathroom', 'Landsize', 'Lattitude', 'Longtitude' ")
+# select the Features - called X by convention
+# Features are the columns that are inputted in the model and will be used to determine
+# the prediction target y (price in our case)
+# Sometimes we use all columns except the prediction target as features.
+melb_features = ['Rooms', 'Bathroom', 'Landsize', 'Lattitude', 'Longtitude']
+X = melb_data[melb_features]
+
+# describe the Features
+print(X.describe())
+
+# show the first few (10) rows of the data
+# print(X.head(10))
+print(X.head(10))
+
