@@ -13,13 +13,13 @@ if the data has some missing cells, then the simplist option for now is to drop
 the houses with missing data from the dataset
 We will use the dropna method where na means N/A
 '''
-melb_data = melb_data.dropna(axis=0)
+filtered_melb_data = melb_data.dropna(axis=0)
 
 # print columns
-print(melb_data.columns)
+print(filtered_melb_data.columns)
 
 # print summary of the data
-print(melb_data.describe())
+print(filtered_melb_data.describe())
 
 print("Data loaded ..")
 
@@ -30,7 +30,7 @@ print ("Set the prediction target y (Price)")
 # usually called y by convention
 # it is a single column stored in Series. A Series is a strcuture like DataFrame but with 
 # single column of data
-y = melb_data.Price
+y = filtered_melb_data.Price
 
 print("Set the Features X: 'Rooms', 'Bathroom', 'Landsize', 'Lattitude', 'Longtitude' ")
 # select the Features - called X by convention
@@ -38,7 +38,7 @@ print("Set the Features X: 'Rooms', 'Bathroom', 'Landsize', 'Lattitude', 'Longti
 # the prediction target y (price in our case)
 # Sometimes we use all columns except the prediction target as features.
 melb_features = ['Rooms', 'Bathroom', 'Landsize', 'Lattitude', 'Longtitude']
-X = melb_data[melb_features]
+X = filtered_melb_data[melb_features]
 
 # describe the Features
 print(X.describe())
@@ -79,5 +79,4 @@ print("The predictions are")
 print(melb_model.predict(X.head()))
 
 print("The actual prices are")
-print(melb_data.Price.head())
-
+print(filtered_melb_data.Price.head())
