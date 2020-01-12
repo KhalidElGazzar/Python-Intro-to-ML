@@ -76,8 +76,40 @@ iowa_model.fit(X,y)
 
 print("Making predictions for the following 5 houses:")
 print(X.head())
+
 print("The predictions are")
 print(iowa_model.predict(X.head()))
 
 print("The actual prices are")
 print(iowa_data.SalePrice.head())
+
+
+
+# Validating the model using MAE (Mean Absolute Error)
+# Here (pandas-01-iowa-training-data), we will use different data for training & validation
+# Hence; It will be expected to have a larger value for the MAE
+
+# In the other case  (pandas-02-melb-data.py) we used the 
+# same training data for validation (which should not be used in real)
+# This resulted in having the MAE = 1115.74 dollar
+
+
+from sklearn.metrics import mean_absolute_error as MAE
+from sklearn.model_selection import train_test_split
+
+# split data into training and validation data, for both features and target
+# The split is based on a random number generator. Supplying a numeric value to
+# the random_state argument guarantees we get the same split every time we
+# run this script.
+train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
+
+# Define model
+melbourne_model = DecisionTreeRegressor()
+
+# Fit model
+melbourne_model.fit(train_X, train_y)
+
+# get predicted prices on validation data
+val_predictions = melbourne_model.predict(val_X)
+print("The Mean Absolute Error when using two different datasets (one for training & the othe for validation) is : ")
+print(MAE(val_y, val_predictions))  # MAE = 33,381.88 (much larger than the other case)

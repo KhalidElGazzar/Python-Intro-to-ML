@@ -75,8 +75,26 @@ melb_model.fit(X,y)
 
 print("Making predictions for the following 5 houses:")
 print(X.head())
+
 print("The predictions are")
+
+# Use the method predict in the mdel to predict the prediction target (price)
 print(melb_model.predict(X.head()))
 
 print("The actual prices are")
 print(filtered_melb_data.Price.head())
+
+# Validating the model using MAE (Mean Absolute Error)
+# In the case below (pandas-02-melb-data.py) we will use the 
+# same training data for validation (which should not be used in real)
+# This will result in having the MAE = 1115.74 dollar
+# In the other file (pandas-01-iowa-training-data), we will use different data for training & validation
+# Hence; It will be expected to have a larger value for the MAE
+from sklearn.metrics import mean_absolute_error as MAE
+
+# Use the method predict in the mdel to predict the prediction target (price)
+predicted_home_prices = melb_model.predict(X)
+
+# print the MAE (Mean Absolute Error)
+print("The Mean Absolute Error when using Melb data to both train and validate is : ")
+print(MAE(y, predicted_home_prices))    # should print 1,115.74
