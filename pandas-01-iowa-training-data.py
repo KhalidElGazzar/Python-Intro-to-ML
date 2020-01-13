@@ -104,12 +104,12 @@ from sklearn.model_selection import train_test_split
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
 
 # Define model
-melbourne_model = DecisionTreeRegressor()
+iowa_model = DecisionTreeRegressor(random_state=1)
 
 # Fit model
-melbourne_model.fit(train_X, train_y)
+iowa_model.fit(train_X, train_y)
 
 # get predicted prices on validation data
-val_predictions = melbourne_model.predict(val_X)
+val_predictions = iowa_model.predict(val_X)
 print("The Mean Absolute Error when using two different datasets (one for training & the othe for validation) is : ")
-print(MAE(val_y, val_predictions))  # MAE = 33,381.88 (much larger than the other case)
+print(MAE(val_y, val_predictions))  # MAE = 32,966.44 (much larger than the other case)
